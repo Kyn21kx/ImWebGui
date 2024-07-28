@@ -18,7 +18,7 @@
 #include <functional>
 #include "JsInterface.hpp"
 
-namespace {
+
 
 //
 // App Interface
@@ -32,7 +32,6 @@ JsInterface g_appInterface;
 void mainLoop(void *) {
     g_appInterface.mainLoop();
 }
-
 
 // These functions are used to pass data back and forth between the JS and the C++ code
 // using the app interface
@@ -48,13 +47,13 @@ EMSCRIPTEN_BINDINGS(ggweb) {
 
 #endif
 
-}
 
 Renderer g_renderer;
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
-    printf("Build time: %s\n", BUILD_TIMESTAMP);
+    //Initialize the renderer
     g_renderer.Initialize("Website thingy");
+
     // initialize the application interface
     if (!g_appInterface.init(g_renderer.GetStateSDL(), g_renderer.GetStateCore())) {
         fprintf(stderr, "Error: failed to initialize app interface.\n");

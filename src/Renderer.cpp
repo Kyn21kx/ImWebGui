@@ -17,6 +17,7 @@ void Renderer::Initialize(const std::string_view& windowName) {
                             //{ .filename = "some-cool-font.ttf", .size = 14.0f*kFontScale, .merge = false, .rangeMin = ..., .rangeMax = ..., },
                         })) {
             fprintf(stderr, "Error: failed to initialize ImGui.\n");
+            assert(false);
             return;
         }
     }

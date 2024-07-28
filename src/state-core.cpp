@@ -1,5 +1,6 @@
 #include "state-core.h"
 
+#include "CoreUI.hpp"
 #include "icons-font-awesome.h"
 
 #include <cmath>
@@ -44,6 +45,7 @@ void StateCore::init(float fontScale) {
 
     this->fontScale = fontScale;
 
+    CoreUI::InitializePanels();
     printf("Initialized the application state\n");
     isInitialized = true;
 }
@@ -134,6 +136,8 @@ void StateCore::render() {
 
         ImGui::End();
     }
+
+    CoreUI::DrawPanels();
 
     ImGui::End();
 }
