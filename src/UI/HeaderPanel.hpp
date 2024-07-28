@@ -4,11 +4,9 @@
 
 class HeaderPanel final : public IPanel {
 public:
-	HeaderPanel(const HeaderPanel &) = default;
-	HeaderPanel(HeaderPanel &&) = default;
-	HeaderPanel &operator=(const HeaderPanel &) = default;
-	HeaderPanel &operator=(HeaderPanel &&) = default;
-
 	void OnRender() override;
+
+private:
+	bool m_on = false;
 
 };

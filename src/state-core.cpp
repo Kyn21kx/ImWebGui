@@ -1,6 +1,6 @@
 #include "state-core.h"
 
-#include "CoreUI.hpp"
+#include "UI/CoreUI.hpp"
 #include "icons-font-awesome.h"
 
 #include <cmath>
@@ -112,6 +112,8 @@ void StateCore::render() {
             // select font
             ImGui::FontSentry sentry(0, 1.0f/fontScale);
 
+            CoreUI::DrawPanels();
+
             ImGui::Text("Window size: %6.3f %6.3f\n", wSize.x, wSize.y);
             ImGui::Text("Mouse down duration: %g\n", ImGui::GetIO().MouseDownDuration[0]);
             ImGui::Text("FA ICON COG: " ICON_FA_COG);
@@ -136,8 +138,6 @@ void StateCore::render() {
 
         ImGui::End();
     }
-
-    CoreUI::DrawPanels();
 
     ImGui::End();
 }

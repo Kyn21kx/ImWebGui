@@ -1,6 +1,6 @@
 #pragma once
 #include "IPanel.hpp"
-#include "UI/HeaderPanel.hpp"
+#include "HeaderPanel.hpp"
 #include <vector>
 class CoreUI {
 public:

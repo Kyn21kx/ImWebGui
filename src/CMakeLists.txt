@@ -13,6 +13,8 @@ set(TARGET ggweb-app)
 
 add_executable(${TARGET}
     main.cpp
+    UI/IPanel.hpp
+    UI/HeaderPanel.cpp
     JsInterface.cpp
     Renderer.cpp
     common.cpp
