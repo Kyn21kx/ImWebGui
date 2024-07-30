@@ -15,6 +15,7 @@ add_executable(${TARGET}
     main.cpp
     UI/IPanel.hpp
     UI/HeaderPanel.cpp
+    UI/ContentPanel.cpp
     JsInterface.cpp
     Renderer.cpp
     common.cpp

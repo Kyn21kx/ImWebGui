@@ -113,27 +113,6 @@ void StateCore::render() {
             ImGui::FontSentry sentry(0, 1.0f/fontScale);
 
             CoreUI::DrawPanels();
-
-            ImGui::Text("Window size: %6.3f %6.3f\n", wSize.x, wSize.y);
-            ImGui::Text("Mouse down duration: %g\n", ImGui::GetIO().MouseDownDuration[0]);
-            ImGui::Text("FA ICON COG: " ICON_FA_COG);
-
-            ImGui::Checkbox("Show circle", &showCircle);
-
-            ImGui::Button("Push data to JS", { 200.0f, 24.0f });
-            if (ImGui::IsItemHovered(ImGuiHoveredFlags_None) && ImGui::IsMouseJustPressed(0)) {
-                updateDataDummy();
-            }
-
-            ImGui::Button("Copy to clipboard", { 200.0f, 24.0f });
-            if (ImGui::IsItemHovered(ImGuiHoveredFlags_None) && ImGui::IsMouseJustPressed(0)) {
-                dataClipboard = "Some clipboard data from the native app";
-            }
-
-            ImGui::Button("Open https://google.com", { 200.0f, 24.0f });
-            if (ImGui::IsItemHovered(ImGuiHoveredFlags_None) && ImGui::IsMouseJustPressed(0)) {
-                dataURL = "https://google.com";
-            }
         }
 
         ImGui::End();
