@@ -16,6 +16,8 @@ add_executable(${TARGET}
     UI/IPanel.hpp
     UI/HeaderPanel.cpp
     UI/ContentPanel.cpp
+    Utils/Parsing/lodepng.cpp
+    Defaults/Image.cpp
     JsInterface.cpp
     Renderer.cpp
     common.cpp
@@ -28,8 +30,18 @@ target_include_directories(${TARGET} PUBLIC
     ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${TARGET}-extra/
     )
 
+
+include(FetchContent)
+FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
+                         GIT_TAG 57e263d7cb7011ebdded3f05109a081cb8b72717) # Replace with your desired git commit from: https://github.com/libcpr/cpr/releases
+FetchContent_MakeAvailable(cpr)
+
+find_package(OpenSSL REQUIRED)
 target_link_libraries(${TARGET} PRIVATE
     imgui-sdl2
+    OpenSSL::SSL
+    OpenSSL::Crypto
+    cpr::cpr
     ${CMAKE_DL_LIBS}
     )
 

@@ -1,24 +1,26 @@
 #include "state-sdl.h"
 
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_error.h>
+#include <SDL2/SDL_render.h>
+#include <cstddef>
+#include <cstdio>
 #include <imgui/imgui.h>
 #include <imgui-extra/imgui_impl.h>
 
-#include <SDL2/SDL.h>
-
-bool StateSDL::initWindow(const char * windowTitle) {
+bool StateSDL::initWindow(const char * windowTitle, SDL_Renderer* outRenderer) {
     ImGui_PreInit();
 
     printf("Initializing SDL window '%s'\n", windowTitle);
 
 #ifdef __EMSCRIPTEN__
     {
-        SDL_Renderer * renderer;
-        SDL_CreateWindowAndRenderer(windowX, windowY, SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI | SDL_RENDERER_PRESENTVSYNC, &window, &renderer);
+        SDL_CreateWindowAndRenderer(windowX, windowY, SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI | SDL_RENDERER_PRESENTVSYNC, &window, outRenderer);
     }
 #else
-    window = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowX, windowY, SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_RESIZABLE);
+    this->window = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowX, windowY, SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_RESIZABLE);
 #endif
-    if (window == nullptr) {
+    if (this->window == nullptr) {
         fprintf(stderr, "Error: failed to create SDL error. Reason: %s\n", SDL_GetError());
         return false;
     }

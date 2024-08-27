@@ -17,9 +17,6 @@
 #include <string>
 #include <functional>
 #include "JsInterface.hpp"
-
-
-
 //
 // App Interface
 //
@@ -46,9 +43,6 @@ EMSCRIPTEN_BINDINGS(ggweb) {
 }
 
 #endif
-
-
-Renderer g_renderer;
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
     //Initialize the renderer

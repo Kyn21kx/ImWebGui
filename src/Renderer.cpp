@@ -2,6 +2,7 @@
 #include "Constants.hpp"
 #include "icons-font-awesome.h"
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_render.h>
 #include <cassert>
 
 void Renderer::Initialize(const std::string_view& windowName) {
@@ -29,7 +30,7 @@ bool Renderer::InitializeSDL(const std::string_view& windowName) {
         return false;
 	}
 
- 	if (!this->m_stateSDL.initWindow(windowName.data())) {
+ 	if (!this->m_stateSDL.initWindow(windowName.data(), this->m_internalRenderer)) {
        	//TODO: Add assert
         fprintf(stderr, "Error: failed to initialize SDL window.\n");
         return false;
@@ -44,6 +45,10 @@ StateCore& Renderer::GetStateCore() noexcept {
 
 StateSDL& Renderer::GetStateSDL() noexcept {
 	return this->m_stateSDL;
+}
+
+SDL_Renderer* Renderer::GetRenderer() noexcept {
+	return this->m_internalRenderer;
 }
 
 void Renderer::Dispose() noexcept {

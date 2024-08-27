@@ -1,7 +1,9 @@
 #pragma once
 
+#include "Defaults/Image.hpp"
 #include "imgui/imgui.h"
 #include "imgui/imgui_internal.h"
+#include <SDL2/SDL_render.h>
 /// @brief Custom UI components for ImGui
 class Components {
 
@@ -51,6 +53,11 @@ class Components {
 
 		window->DrawList->PathStroke(color, 0, thickness);
 		return true;
+	}
+
+	static void ImageComponent(Image& img) {
+		GLuint texId = img.GetTexture();
+		ImGui::Image(static_cast<void*>(&texId), ImVec2(img.Width(), img.Height()));
 	}
 
 };

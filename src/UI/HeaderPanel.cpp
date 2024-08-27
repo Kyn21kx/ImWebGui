@@ -1,7 +1,15 @@
 #include "HeaderPanel.hpp"
 #include "Constants.hpp"
+#include "UI/Components.hpp"
 #include "imgui/imgui.h"
 #include <cstdio>
+#include <string>
+
+HeaderPanel::HeaderPanel() {
+	const std::string uri = "https://cdn3.iconfinder.com/data/icons/basicolor-reading-writing/24/077_twitter-512.png";
+	this->m_twitterImage.Init(512, 512);
+	this->m_twitterImage.FetchFromUrl(uri);
+}
 
 void HeaderPanel::OnRender() {
 	//Draw a common header here
@@ -11,7 +19,8 @@ void HeaderPanel::OnRender() {
 
     // Add logo or title
     ImGui::SetWindowFontScale(0.9f);
-    ImGui::Text("Aspis.NET");
+    Components::ImageComponent(this->m_twitterImage);
+    ImGui::Text("Twitter mock");
 
     // Adjust the position to the right for the navigation buttons
     const float displaySizeX = ImGui::GetIO().DisplaySize.x;
@@ -37,8 +46,8 @@ void HeaderPanel::OnRender() {
         // Navigate to contact
     }
 
-    ImGui::SetWindowFontScale(0.5f);
-    ImGui::Text("A small framework for C# web applications");
+    ImGui::SetWindowFontScale(0.3f);
+    ImGui::Text("Your global town square (without Elon Musk)");
 
     ImVec2 size(displaySizeX, Constants::HEADER_HEIGHT);
     ImGui::SetWindowSize(size);
